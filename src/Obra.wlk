@@ -11,6 +11,7 @@ class Obra {
 	var property metrosHechosCanioAgua = 0
 	var property metrosHechosCable = 0
 	var obrerosRegistrados = []
+	var property efectivo = 0
 	
 	
 	method agregarObrero(obrero) {
@@ -20,10 +21,20 @@ class Obra {
 		return obrerosRegistrados.any({obrero => obrero==tipo})
 	}
 	
+	method obrerosActivos(){
+		return obrerosRegistrados.filter({obrero => obrero.estaActivo()}) 
+	}
 	
 	method registrarJornada(){
-		obrerosRegistrados.filter({obrero => obrero.estaActivo()})
-		.forEach({obrero => obrero.trabajarUnDia(self)})
+		self.obrerosActivos().forEach({obrero => obrero.trabajarUnDia(self)})
+	}
+	
+	method totalAdeudado(){
+		return obrerosRegistrados.sum({obrero=>obrero.cuantoCobrar()})
+	}
+	method pagarDeudas(){
+		efectivo-=self.totalAdeudado()
+		obrerosRegistrados.forEach({obrero=>obrero.diasTrabajados(0)})
 	}
 	
 	method recibirLadrillos(cant){

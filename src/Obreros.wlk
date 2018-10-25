@@ -1,6 +1,22 @@
+object uocra{
+	method jornalAlbanil(){
+		return 2000
+	}
+	method jornalEspecBanioYCocina(){
+		return 3000
+	}
+	method jornalElectricista(){
+		return 3500
+	}
+	
+}
+
 class Obrero {
 	var property estaActivo
 	var property diasTrabajados = 0
+	
+	method consumir(obra)
+	method aporta(obra)
 	
 	method trabajarUnDia(obra){
 		self.consumir(obra)
@@ -8,11 +24,10 @@ class Obrero {
 		self.sumarDiaDeTrabajo()
 	}
 	
-	method consumir(obra)
-	method aporta(obra)
 	method sumarDiaDeTrabajo(){
 		diasTrabajados+=1
 	}
+	method cuantoCobrar()
 }
 
 class Albanil inherits Obrero{
@@ -21,6 +36,9 @@ class Albanil inherits Obrero{
 	}
 	override method aporta(obra){
 		obra.levantarPared(3)
+	}
+	override method cuantoCobrar(){
+		return uocra.jornalAlbanil()*diasTrabajados
 	}
 }
 
@@ -32,6 +50,9 @@ class Gasista inherits Obrero{
 	override method aporta(obra){
 		obra.colocarCaniosGas(3)	
 	}
+	override method cuantoCobrar(){
+		return uocra.jornalEspecBanioYCocina()*diasTrabajados
+	}
 }
 
 class Plomero inherits Obrero{
@@ -42,6 +63,9 @@ class Plomero inherits Obrero{
 	override method aporta(obra){
 		obra.colocarCaniosAgua(9)	
 	}
+	override method cuantoCobrar(){
+		return uocra.jornalEspecBanioYCocina()*diasTrabajados
+	}
 }
 
 class Electricista inherits Obrero{
@@ -51,5 +75,8 @@ class Electricista inherits Obrero{
 	}
 	override method aporta(obra){
 		obra.colocarMetrosCable(4)	
+	}
+	override method cuantoCobrar(){
+		return uocra.jornalElectricista()*diasTrabajados
 	}
 }

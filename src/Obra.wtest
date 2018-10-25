@@ -51,8 +51,36 @@ describe "Test Obra"{
 		assert.that(obra.tieneObrero(gasista1))
 	}
 	
-	test ""{
+	test "registrarJornada"{
 		obra.registrarJornada()
 		assert.equals(1,gasista1.diasTrabajados())
+	}
+	
+	test "cuantoCobrar()"{
+		obra.registrarJornada()
+		obra.registrarJornada()
+		assert.equals(4000,albanil1.cuantoCobrar())
+		assert.equals(0,albanil2.cuantoCobrar())
+		assert.equals(6000,gasista1.cuantoCobrar())
+		assert.equals(6000,gasista2.cuantoCobrar())
+		assert.equals(6000,plomero1.cuantoCobrar())
+		assert.equals(7000,electr1.cuantoCobrar())
+		
+	}
+	
+	test "totalAdeudado()"{
+		obra.registrarJornada()
+		obra.registrarJornada()
+		assert.equals(29000,obra.totalAdeudado())
+	}
+	
+	test "pagarDeudas() y efectivo"{
+		obra.efectivo(100000)
+		obra.registrarJornada()
+		obra.registrarJornada()
+		assert.equals(29000,obra.totalAdeudado())
+		obra.pagarDeudas()
+		assert.equals(0,obra.totalAdeudado())
+		assert.equals(71000,obra.efectivo())		
 	}
 }
