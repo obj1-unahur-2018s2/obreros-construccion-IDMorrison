@@ -1,0 +1,58 @@
+import Obra.*
+import Obreros.*
+
+describe "Test Obra"{
+	const obra = new Obra()
+	const albanil1 = new Albanil()
+	const albanil2 = new Albanil()
+	const gasista1 = new Gasista()
+	const gasista2 = new Gasista()
+	const plomero1 = new Plomero()
+	const electr1 = new Electricista()
+	
+	fixture {
+		obra.ladrillos(1000)
+		obra.canios(400)
+		obra.fosforos(8000)
+		obra.arandelas(500)
+		obra.metrosCable(100)
+		obra.cintaAisladora(100)
+		
+		obra.agregarObrero(albanil1)
+		albanil1.estaActivo(true)
+		obra.agregarObrero(albanil2)
+		albanil2.estaActivo(false)
+		obra.agregarObrero(gasista1)
+		gasista1.estaActivo(true)
+		obra.agregarObrero(gasista2)
+		gasista2.estaActivo(true)
+		obra.agregarObrero(plomero1)
+		plomero1.estaActivo(true)
+		obra.agregarObrero(electr1)
+		electr1.estaActivo(true)
+	}
+	
+	test "registrarJornada()" {
+		obra.registrarJornada()
+		assert.equals(900,obra.ladrillos())
+		assert.equals(384,obra.canios())
+		assert.equals(7960,obra.fosforos())
+		assert.equals(470,obra.arandelas())
+		assert.equals(96,obra.metrosCable())
+		assert.equals(99,obra.cintaAisladora())
+	}
+	
+	test "recibirELEMENTO()"{
+		obra.recibirLadrillos(100)
+		assert.equals(1100,obra.ladrillos())
+	}
+	
+	test "tieneObrero(tipo)"{
+		assert.that(obra.tieneObrero(gasista1))
+	}
+	
+	test ""{
+		obra.registrarJornada()
+		assert.equals(1,gasista1.diasTrabajados())
+	}
+}
