@@ -83,4 +83,9 @@ describe "Test Obra"{
 		assert.equals(0,obra.totalAdeudado())
 		assert.equals(71000,obra.efectivo())		
 	}
+	
+	test "aporta(obra)"{
+		obra.registrarJornada()
+		assert.equals(3,obra.metrosHechosPared())
+	}
 }

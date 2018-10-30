@@ -31,9 +31,9 @@ describe "Test Obreros" {
 		electr1.estaActivo(true)
 	}
 
-	test "testX" {
+	test "registrarObra() en agregarObrero()" {
 	
-		assert.that(true)
+		assert.that(albanil1.pasoPor(obra))
 	
 	}
 }

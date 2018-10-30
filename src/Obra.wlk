@@ -1,4 +1,6 @@
 class Obra {
+	var property anchoTerreno
+	var property profundidadTerreno
 	
 	var property ladrillos = 0
 	var property canios = 0
@@ -16,6 +18,7 @@ class Obra {
 	
 	method agregarObrero(obrero) {
 		obrerosRegistrados.add(obrero)
+		obrero.registrarObra(self)
 	}
 	method tieneObrero(tipo){
 		return obrerosRegistrados.any({obrero => obrero==tipo})
@@ -76,9 +79,36 @@ class Obra {
 		cintaAisladora-=cuantos
 	}
 	
-//	method levantarPared(metros){
-//		metrosHechosPared+=
-//	}
+	method levantarPared(metros){
+		metrosHechosPared+=metros
+	}
+	method colocarCaniosGas(metros){
+		metrosHechosCanioGas+=metros
+	}
+	method colocarCaniosAgua(metros){
+		metrosHechosCanioAgua+=metros
+	}
+	method colocarCable(metros){
+		metrosHechosCable+=metros
+	}
+}
+
+class Casa{
+	var property cantHabitaciones
+	var property cantBanios
+	var property cantPisos
+	 
+}
+
+class Edificio{
+	var property cantPisos
+	var property dptosPorPiso
+	var property habitacionesPorDepto
+	var property cantAscensores
 	
-	
+	method obraFinalizada(){
+		return (
+			
+		)
+	}
 }

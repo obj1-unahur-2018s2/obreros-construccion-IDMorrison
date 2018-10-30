@@ -14,20 +14,28 @@ object uocra{
 class Obrero {
 	var property estaActivo
 	var property diasTrabajados = 0
-	
+	const registroObras = []
 	method consumir(obra)
 	method aporta(obra)
 	
 	method trabajarUnDia(obra){
 		self.consumir(obra)
-//		self.aporta(obra)
+		self.aporta(obra)
 		self.sumarDiaDeTrabajo()
 	}
 	
 	method sumarDiaDeTrabajo(){
 		diasTrabajados+=1
 	}
+	
 	method cuantoCobrar()
+	
+	method registrarObra(obra){
+		registroObras.add(obra)
+	}
+	method pasoPor(obra){
+		registroObras.any({elemento => elemento == obra})
+	}
 }
 
 class Albanil inherits Obrero{
