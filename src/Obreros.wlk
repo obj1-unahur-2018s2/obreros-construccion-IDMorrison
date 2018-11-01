@@ -34,7 +34,7 @@ class Obrero {
 		registroObras.add(obra)
 	}
 	method pasoPor(obra){
-		registroObras.any({elemento => elemento == obra})
+		return registroObras.any({elemento => elemento == obra})
 	}
 }
 
@@ -82,7 +82,7 @@ class Electricista inherits Obrero{
 		obra.restarCintaAisladora(1)
 	}
 	override method aporta(obra){
-		obra.colocarMetrosCable(4)	
+		obra.colocarCable(4)	
 	}
 	override method cuantoCobrar(){
 		return uocra.jornalElectricista()*diasTrabajados

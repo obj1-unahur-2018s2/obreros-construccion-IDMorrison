@@ -14,6 +14,7 @@ class Obra {
 	var property metrosHechosCable = 0
 	var obrerosRegistrados = []
 	var property efectivo = 0
+	var property cantPisos
 	
 	
 	method agregarObrero(obrero) {
@@ -39,6 +40,18 @@ class Obra {
 		efectivo-=self.totalAdeudado()
 		obrerosRegistrados.forEach({obrero=>obrero.diasTrabajados(0)})
 	}
+	
+	method obraFinalizada(){
+		return (
+			metrosHechosPared>=50*self.cantHabitaciones() and
+			metrosHechosCanioGas>=((anchoTerreno+profundidadTerreno)*cantPisos*5) and
+			metrosHechosCanioAgua>=180*self.cantBanios() and
+			metrosHechosCable>=50*self.cantHabitaciones()+100*cantPisos
+		)
+	}
+	
+	method cantHabitaciones()
+	method cantBanios()
 	
 	method recibirLadrillos(cant){
 		ladrillos+=cant
@@ -93,22 +106,30 @@ class Obra {
 	}
 }
 
-class Casa{
+class Casa inherits Obra{
 	var property cantHabitaciones
 	var property cantBanios
-	var property cantPisos
-	 
+	
+	override method cantHabitaciones(){
+		return cantHabitaciones
+	}
+	
+	override method cantBanios(){
+		return cantBanios
+	}
+	
 }
 
-class Edificio{
-	var property cantPisos
+class Edificio inherits Obra{
+	
 	var property dptosPorPiso
 	var property habitacionesPorDepto
 	var property cantAscensores
 	
-	method obraFinalizada(){
-		return (
-			
-		)
+	override method cantHabitaciones(){
+		return cantPisos*dptosPorPiso*habitacionesPorDepto
+	}
+	override method cantBanios(){
+		return habitacionesPorDepto*1
 	}
 }

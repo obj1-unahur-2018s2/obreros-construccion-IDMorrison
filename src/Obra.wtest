@@ -2,7 +2,7 @@ import Obra.*
 import Obreros.*
 
 describe "Test Obra"{
-	const obra = new Obra()
+	const obra = new Casa()
 	const albanil1 = new Albanil()
 	const albanil2 = new Albanil()
 	const gasista1 = new Gasista()
@@ -87,5 +87,10 @@ describe "Test Obra"{
 	test "aporta(obra)"{
 		obra.registrarJornada()
 		assert.equals(3,obra.metrosHechosPared())
+	}
+	
+	test "obraFinalizada()"{
+		obra.registrarJornada()
+		
 	}
 }
